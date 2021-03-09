@@ -7,7 +7,25 @@
     tools:context=".HousingFeedFragment">
 
     <!-- TODO: PHASE 3.1 - Add RecyclerView -->
+    <Button
+        android:id="@+id/post_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="POST" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/housing_feed_recyclerview"
+
+        android:layout_gravity="fill_vertical"
+        android:layout_marginTop="13dp"
+        android:layout_marginHorizontal="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <!-- TODO: PHASE 3.1 - Add Post Button -->
+
 
 </FrameLayout>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_form_image.*
 
 
@@ -38,6 +39,11 @@ class FormImageFragment : Fragment() {
         //  we will do more than this in a future phase. In PHASE 6.2 - instead of navigating in the
         //  onClickListener, call postImage() and only navigate when you successfully upload the
         //  image and data onto the server.
+        submitBtnToHome.setOnClickListener {
+            val ac = R.id.action_formImageFragment_to_housingFeedFragment
+            it.findNavController().navigate(ac)
+        }
+
 
     }
 

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class HousingListAdapter(private var posts: List<Post>) : RecyclerView.Adapter<ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -19,13 +20,14 @@ class HousingListAdapter(private var posts: List<Post>) : RecyclerView.Adapter<I
         val item = posts[position]
         holder.apply {
             // TODO: PHASE 3.1 - Re-define these values based on the the post object being displayed
-            housingType.text = "apartment"
-            location.text = "555 apartment road, Davis, CA"
-            price.text = "2000"
-            numOfBeds.text = "3"
-            numOfBaths.text = "2"
-            covidTested.text = "true"
+            housingType.text = item.type
+            location.text = item.location
+            price.text = item.price.toString()
+            numOfBeds.text = item.bed.toString()
+            numOfBaths.text = item.bath.toString()
+            covidTested.text = item.covidTested
             // TODO: PHASE 3.1 Use Glide to show an image from the database
+            Glide.with(holder.itemView).load("https://RentelServer.zhemp.repl.co" + item.image).into(housingImage)
             // Glide.with(holder.itemView)
             //    .load("YOUR_URL_HERE" + item.image)
             //    .into(housingImage)
@@ -33,6 +35,8 @@ class HousingListAdapter(private var posts: List<Post>) : RecyclerView.Adapter<I
 
         holder.housingItem.setOnClickListener{
             // TODO: PHASE 3.1 navigate to HousingDisplayFragment and send the Post obect
+            val ac = HousingFeedFragmentDirections.actionHousingFeedFragmentToHousingDisplayFragment(item)
+            it.findNavController().navigate(ac)
         }
     }
 

@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_housing_feed.*
+
 
 class HousingFeedFragment : Fragment() {
 
@@ -25,11 +29,21 @@ class HousingFeedFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // TODO: PHASE 3.1 - Connect adapter and layoutManager to the RecyclerView defined in xml
+        val housingListAdapter = HousingListAdapter()
+        val recyclerView = housing_feed_recyclerview
+        recyclerView.adapter = housingListAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
 
 
         // TODO: PHASE 3.1 - Add onClickListener to Post Button and navigate to signin page or
         //  the start of the form (FormLocationFragment)
-
+        val post: View = post_button
+        post.setOnClickListener {
+            val ac = R.id.action_housingFeedFragment_to_formLocationFragment
+            //val ac = R.id.action_housingFeedFragment_to_signInFragment
+            it.findNavController().navigate(ac)
+        }
 
         // TODO: PHASE 4 - Get an instance of the singleton housingService defined in the MainActivity
 
