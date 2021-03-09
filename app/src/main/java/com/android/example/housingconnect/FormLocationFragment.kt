@@ -1,6 +1,7 @@
 package com.android.example.housingconnect
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,10 +25,10 @@ class FormLocationFragment : Fragment() {
         // TODO: PHASE 3.2 - when a user clicks 'continue' navigate the user to the FormDetailsFragment
         //  and send the data the user has filled in so far. the recommended way is to send a Post object
         var temp_post = Post(0,"","",0,0,0,"","","","","","")
-        val Location: String = location.editText.toString() + " " + city.editText.toString() + "" + state.editText.toString()
-        temp_post.location = Location
 
         continueBtn.setOnClickListener{
+            val Location: String = location.editText?.text.toString() + " " + city.editText?.text.toString() + " " + state.editText?.text.toString()
+            temp_post.location = Location
             val ac = FormLocationFragmentDirections.actionFormLocationFragmentToFormDetailsFragment(temp_post)
             it.findNavController().navigate(ac)
         }

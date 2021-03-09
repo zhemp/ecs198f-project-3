@@ -10,7 +10,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class HousingListAdapter(private var posts: List<Post>) : RecyclerView.Adapter<ItemViewHolder>() {
+class HousingListAdapter: RecyclerView.Adapter<ItemViewHolder>() {
+
+    private var posts = emptyList<Post>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.housing_list_item, parent, false)
         return ItemViewHolder(view)

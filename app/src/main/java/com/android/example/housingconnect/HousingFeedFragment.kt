@@ -1,6 +1,7 @@
 package com.android.example.housingconnect
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_housing_feed.*
+import retrofit2.*
 
 
 class HousingFeedFragment : Fragment() {
@@ -28,6 +30,8 @@ class HousingFeedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
         // TODO: PHASE 3.1 - Connect adapter and layoutManager to the RecyclerView defined in xml
         val housingListAdapter = HousingListAdapter()
         val recyclerView = housing_feed_recyclerview
@@ -47,8 +51,18 @@ class HousingFeedFragment : Fragment() {
 
         // TODO: PHASE 4 - Get an instance of the singleton housingService defined in the MainActivity
 
+        val housingService = (requireActivity() as MainActivity).housingService
 
         // TODO: PHASE 4 - using the housingService to fetch all Housing Listing from the server
         //  make sure to update the recycler views adapter
+        housingService.getAll().enqueue(object: retrofit2.Callback<List<Post>>{
+            override fun onResponse(call: Call<List<Post>>, response: retrofit2.Response<List<Post>>){
+                housingListAdapter.setData(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d("ListFrag", "On Failure")
+            }
+        })
     }
 }

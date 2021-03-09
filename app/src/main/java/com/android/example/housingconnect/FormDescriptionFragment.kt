@@ -27,10 +27,10 @@ class FormDescriptionFragment : Fragment() {
         // TODO: PHASE 3.2 - when a user clicks 'continue' navigate the user to the FormImageFragment
         //  and send the data the user has filled in so far. the recommended way is to send a Post object
         val in_post = args.postin
-        in_post.desc = description.editText.toString()
-        in_post.covidTested = covidTestedCheck.isChecked.toString()
 
         continueBtn.setOnClickListener {
+            in_post.desc = description.editText?.text.toString()
+            in_post.covidTested = covidTestedCheck.isChecked.toString()
             val ac = FormDescriptionFragmentDirections.actionFormDescriptionFragmentToFormImageFragment(in_post)
             it.findNavController().navigate(ac)
         }
