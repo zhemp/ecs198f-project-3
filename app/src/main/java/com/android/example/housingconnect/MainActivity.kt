@@ -2,6 +2,7 @@ package com.android.example.housingconnect
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -26,5 +27,9 @@ class MainActivity : AppCompatActivity() {
                 .build().create()
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.fragment).navigateUp() || super.onSupportNavigateUp()
     }
 }

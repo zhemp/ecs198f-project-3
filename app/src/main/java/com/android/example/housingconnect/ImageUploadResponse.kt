@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ImageUploadResponse(
         val message: String,
-        val type: String
+        val path: String
 ) : Parcelable
 
 // TODO: PHASE 2.2 - Define ImageUploadResponse Data Class

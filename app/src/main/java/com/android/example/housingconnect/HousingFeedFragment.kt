@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_housing_feed.*
 import retrofit2.*
 
@@ -44,9 +46,14 @@ class HousingFeedFragment : Fragment() {
         //  the start of the form (FormLocationFragment)
         val post: View = post_button
         post.setOnClickListener {
-            val ac = R.id.action_housingFeedFragment_to_formLocationFragment
-            //val ac = R.id.action_housingFeedFragment_to_signInFragment
-            it.findNavController().navigate(ac)
+            if (Firebase.auth.currentUser != null){
+                val ac = R.id.action_housingFeedFragment_to_formLocationFragment
+                it.findNavController().navigate(ac)
+            }
+            else{
+                val ac = R.id.action_housingFeedFragment_to_signInFragment
+                it.findNavController().navigate(ac)
+            }
         }
 
         // TODO: PHASE 4 - Get an instance of the singleton housingService defined in the MainActivity
